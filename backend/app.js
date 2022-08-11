@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     'Access-Control-Allow-Methods',
-    'GET, POST, PATCH, DELETE, OPTIONS'
+    'GET, POST, PATCH, PUT, DELETE, OPTIONS'
   );
   next();
 });
@@ -43,6 +43,23 @@ app.post('/api/customers', (req, res, next) => {
     res.status(201).json({
       message: 'Customer added successfully.',
       customerId: createdCustomer._id
+    });
+  });
+});
+
+app.put('/api/customers/:id', (req, res, next) => {
+  const customer = new Customer({
+    _id: req.body.id,
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+    gender: req.body.gender
+  });
+  Customer.updateOne({ _id: req.params.id }, customer)
+  .then(result => {
+    res.status(200).json({
+      message: 'Customer updated successfully.',
     });
   });
 });

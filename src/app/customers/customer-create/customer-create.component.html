@@ -1,28 +1,28 @@
 <mat-card>
-  <form (submit)="onAddCustomer(customerForm)" #customerForm="ngForm">
+  <form (submit)="onSaveCustomer(customerForm)" #customerForm="ngForm">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput type="text" name="name" #name="ngModel" ngModel required>
+      <input matInput type="text" name="name" #name="ngModel" [ngModel]="customer.name" required>
       <mat-error *ngIf="name.invalid">Please enter a customer name</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput type="email" name="email" #email="ngModel" ngModel required>
+      <input matInput type="email" name="email" #email="ngModel" [ngModel]="customer.email" required>
       <mat-error *ngIf="email.invalid">Please enter a customer email</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Phone Number</mat-label>
-      <input matInput type="number" name="phone" #phone="ngModel" ngModel required>
+      <input matInput type="number" name="phone" #phone="ngModel" [ngModel]="customer.phone" required>
       <mat-error *ngIf="phone.invalid">Please enter a customer phone</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Address</mat-label>
-      <input matInput type="text" name="address" #address="ngModel" ngModel required>
+      <input matInput type="text" name="address" #address="ngModel" [ngModel]="customer.address" required>
       <mat-error *ngIf="address.invalid">Please enter a customer address</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Gender</mat-label>
-      <input matInput type="text" name="gender" #gender="ngModel" ngModel required>
+      <input matInput type="text" name="gender" #gender="ngModel" [ngModel]="customer.gender" required>
       <mat-error *ngIf="gender.invalid">Please enter a customer gender</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Customer</button>

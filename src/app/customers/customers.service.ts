@@ -36,6 +36,10 @@ export class CustomersService {
     return this.customersUpdated.asObservable();
   }
 
+  getCustomer(id: string) {
+    return {...this.customers.find(c => c.id === id)};
+  }
+
   addCustomer(name: string, email: string, phone: string, address: string, gender: string) {
     const customer: Customer = {
       id      : null,
@@ -51,6 +55,21 @@ export class CustomersService {
       customer.id = custId;
       this.customers.push(customer);
       this.customersUpdated.next([...this.customers]);
+    });
+  }
+
+  updateCustomer(id: string, name: string, email: string, phone: string, address: string, gender: string) {
+    const customer: Customer = {
+      id      : id,
+      name    : name,
+      email   : email,
+      phone   : phone,
+      address : address,
+      gender  : gender
+    }
+    this.http.put('http://localhost:3000/api/customers/' + id, customer)
+    .subscribe((response) => {
+      console.log(response);
     });
   }
 
