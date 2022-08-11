@@ -6,7 +6,7 @@ const Customer = require('./models/customer');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://admin:z1W160kgzAQZObzU@cluster0.3g6epw9.mongodb.net/node-angular?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:<password>@cluster0.3g6epw9.mongodb.net/node-angular?retryWrites=true&w=majority')
 .then(() => {
   console.log('Connected to database');
 })
