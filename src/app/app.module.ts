@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { CustomerCreateComponent } from './customers/customer-create/customer-create.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
