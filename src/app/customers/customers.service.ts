@@ -45,9 +45,10 @@ export class CustomersService {
       address : address,
       gender  : gender
     };
-    this.http.post<{message: string}>('http://localhost:3000/api/customers', customer)
+    this.http.post<{message: string, customerId: string}>('http://localhost:3000/api/customers', customer)
     .subscribe((responseData) => {
-      console.log(responseData.message);
+      const custId = responseData.customerId;
+      customer.id = custId;
       this.customers.push(customer);
       this.customersUpdated.next([...this.customers]);
     });

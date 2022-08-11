@@ -38,9 +38,12 @@ app.post('/api/customers', (req, res, next) => {
     address: req.body.address,
     gender: req.body.gender
   });
-  customer.save();
-  res.status(201).json({
-    message: 'Customer added successfully.',
+  customer.save()
+  .then(createdCustomer => {
+    res.status(201).json({
+      message: 'Customer added successfully.',
+      customerId: createdCustomer._id
+    });
   });
 });
 
