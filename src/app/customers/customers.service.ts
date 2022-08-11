@@ -37,7 +37,8 @@ export class CustomersService {
   }
 
   getCustomer(id: string) {
-    return {...this.customers.find(c => c.id === id)};
+    return this.http.get<{_id: string; name: string; email: string; phone: string; address: string; gender: string}>
+    ('http://localhost:3000/api/customers/' + id);
   }
 
   addCustomer(name: string, email: string, phone: string, address: string, gender: string) {
@@ -69,7 +70,11 @@ export class CustomersService {
     }
     this.http.put('http://localhost:3000/api/customers/' + id, customer)
     .subscribe((response) => {
-      console.log(response);
+      const updatedCustomers = [...this.customers];
+      const oldCustomerIndex = updatedCustomers.findIndex(c => c.id === customer.id);
+      updatedCustomers[oldCustomerIndex] = customer;
+      this.customers = updatedCustomers;
+      this.customersUpdated.next([...this.customers]);
     });
   }
 

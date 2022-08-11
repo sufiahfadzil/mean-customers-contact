@@ -74,6 +74,19 @@ app.get('/api/customers', (req, res, next) => {
   });
 });
 
+app.get('/api/customers/:id', (req, res, next) => {
+  Customer.findById(req.params.id)
+  .then(customer => {
+    if (customer) {
+      res.status(200).json(customer);
+    } else {
+      res.status(404).json({
+        message: 'Customer not found!'
+      });
+    }
+  });
+});
+
 app.delete('/api/customers/:id', (req, res, next) => {
   Customer.deleteOne({ _id: req.params.id })
   .then(result => {

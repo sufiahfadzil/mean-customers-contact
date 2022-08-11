@@ -27,7 +27,16 @@ export class CustomerCreateComponent implements OnInit {
       if (paramMap.has('customerId')) {
         this.mode = 'edit';
         this.customerId = paramMap.get('customerId');
-        this.customer = this.customersService.getCustomer(this.customerId);
+        this.customersService.getCustomer(this.customerId).subscribe(customerData => {
+          this.customer = {
+            id: customerData._id,
+            name: customerData.name,
+            email: customerData.email,
+            phone: customerData.phone,
+            address: customerData.address,
+            gender: customerData.gender
+          };
+        });
       } else {
         this.mode = 'create';
         this.customerId = null;
