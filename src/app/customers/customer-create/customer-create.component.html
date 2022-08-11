@@ -22,7 +22,10 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Gender</mat-label>
-      <input matInput type="text" name="gender" #gender="ngModel" [ngModel]="customer?.gender" required>
+      <select matNativeControl name="gender" #gender="ngModel" [ngModel]="customer?.gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
       <mat-error *ngIf="gender.invalid">Please enter a customer gender</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Customer</button>
